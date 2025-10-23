@@ -8,7 +8,7 @@ const reviews = [
       "Exceptional web development! Delivered a seamless, responsive site with clean code and great UX.",
     name: "Rahul Yadav",
     href: "https://www.linkedin.com/in/rahul-yadav-42b260341/",
-    imgSrc: "assets/rahul.jpeg",
+    imgSrc: "./assets/rahul.jpeg",
     company: "PixelForge",
   },
   {
@@ -16,7 +16,7 @@ const reviews = [
       "Impressive work! Fast loading times, intuitive design, and flawless backend integration. Highly recommend.",
     name: "Narendra Yadav",
     href: "https://www.linkedin.com/in/narendra-yadav-0ba95b341/",
-    imgSrc: "assets/narendra.jpeg",
+    imgSrc: "./assets/narendra.jpeg",
     company: "NexaWave",
   },
   {
@@ -24,7 +24,7 @@ const reviews = [
       "Outstanding developer! Built a robust site with perfect functionality. Efficient and detail-oriented.",
     name: "Lalit Kumawat",
     href: "https://www.linkedin.com/in/lalit-98b79a324/",
-    imgSrc: "assets/lalit.jpeg",
+    imgSrc: "./assets/lalit.jpeg",
     company: "CodeCraft",
   },
   {
@@ -32,7 +32,7 @@ const reviews = [
       "Creative and skilled! Produced a modern, user-friendly site that exceeded expectations. Great communication.",
     name: "Rohit Yadav",
     href: "https://www.linkedin.com/in/rohit-yadav-14b4411b2/",
-    imgSrc: "assets/rohit.jpeg",
+    imgSrc: "./assets/rohit.jpeg",
     company: "BrightWeb",
   },
   {
@@ -40,7 +40,7 @@ const reviews = [
       "Professional work! Delivered on time, with a polished design and smooth user experience. Top-notch developer.",
     name: "Mukesh Lilawat",
     href: "https://www.linkedin.com/in/mukeshlilawat1/",
-    imgSrc: "assets/mukesh.jpeg",
+    imgSrc: "./assets/mukesh.jpeg",
     company: "TechMosaic",
   },
   {
@@ -48,7 +48,7 @@ const reviews = [
       "Excellent project execution! High-quality code, responsive design, and exceptional problem-solving skills.",
     name: "Dileep Yadav",
     href: "https://www.instagram.com/dileep_yadav7362/",
-    imgSrc: "../src/assets/dilip.png",
+    imgSrc: "./assets/dilip.png",
     company: "Skyline Digital",
     isInstagram: true,
   },
