@@ -1,5 +1,5 @@
-module.exports = {
-  images: {
-    domains: ["myprotofolio-eight.vercel.app"]
+export default {
+  build: {
+    outDir: "public"
   }
 }
