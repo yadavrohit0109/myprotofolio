@@ -41,8 +41,8 @@ const Navbar = ({ navOpen }) => {
     { label: 'Work', link: '#work' },
     { label: 'Reviews', link: '#reviews' },
     { label: 'Contact', link: '#contact', className: 'md:hidden' },
-    { label: 'Pay', link: '#payment' }, // ✅ Page navigation
-    { label: 'YouTube', link: '#YouTubePage' }
+    //{ label: 'Pay', link: '#payment' }, // ✅ Page navigation
+    //{ label: 'YouTube', link: '#YouTubePage' }
   ];
 
   return (

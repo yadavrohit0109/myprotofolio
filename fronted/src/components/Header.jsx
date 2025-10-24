@@ -39,12 +39,12 @@ const Header = () => {
 
         {/* Right side - Actions */}
         <div className="hidden md:flex gap-4 justify-end items-center">
-         <a href="/login" className="text-sm px-4 py-2 border border-indigo-400 text-white rounded-md hover:bg-indigo-600">
+         {/* <a href="/login" className="text-sm px-4 py-2 border border-indigo-400 text-white rounded-md hover:bg-indigo-600">
   Login
 </a>
 <a href="/signup" className="text-sm px-4 py-2 bg-indigo-500 text-white rounded-md hover:bg-indigo-600">
   Sign Up
-</a>
+</a> */}
 
           <a
             href="#contact"
