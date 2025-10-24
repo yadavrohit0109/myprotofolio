@@ -8,17 +8,11 @@ const Header = () => {
   const [navOpen, setNavOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 w-full z-[100] bg-gradient-to-b from-black/80 to-transparent backdrop-blur-md shadow-md">
+    <header className="fixed top-0 left-0 w-full z-[100] bg-gradient-to-b from-black/90 to-black/70 backdrop-blur-md shadow-md">
       <div className="relative max-w-screen-2xl mx-auto px-4 md:px-6 py-3 flex items-center justify-between">
         
-        {/* 🔥 Left side (empty placeholder for centering layout) */}
-        <div className="w-10 md:hidden"></div>
-
-        {/* 🔥 Center Logo (mobile & tablet: centered, desktop: left) */}
-        <a
-          href="/"
-          className="flex items-center space-x-2 justify-center absolute left-1/2 -translate-x-1/2 md:static md:translate-x-0 z-[105]"
-        >
+        {/* Logo - always left */}
+        <a href="/" className="flex items-center space-x-2 z-[105]">
           <img
             src={logo}
             width={40}
@@ -26,14 +20,18 @@ const Header = () => {
             alt="Yadav AI"
             className="rounded-full"
           />
-          <span className="text-xl font-bold text-white tracking-wider hidden sm:inline-block">
-            Yadav <span className="text-indigo-400">Portfolio</span>
-          </span>
         </a>
 
-        {/* 🔥 Right side (Menu + Navbar) */}
+        {/* Center text only on mobile/tablet */}
+        <div className="absolute left-1/2 -translate-x-1/2 md:hidden z-[105] text-center">
+          <span className="text-xl font-bold text-white tracking-wide font-sans">
+            Yadav <span className="text-indigo-400">Portfolio</span>
+          </span>
+        </div>
+
+        {/* Right side - hamburger / desktop menu */}
         <div className="relative z-[110] flex items-center">
-          {/* Hamburger button (mobile/tablet only) */}
+          {/* Hamburger button - only on mobile/tablet */}
           <button
             className="md:hidden text-white text-3xl focus:outline-none"
             onClick={() => setNavOpen(!navOpen)}
@@ -43,7 +41,7 @@ const Header = () => {
             </span>
           </button>
 
-          {/* ✅ Mobile Dropdown Menu */}
+          {/* Mobile Dropdown Menu */}
           <AnimatePresence>
             {navOpen && (
               <motion.div
@@ -51,34 +49,20 @@ const Header = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.3 }}
-                className="absolute top-12 right-0 w-48 bg-[#0b0f1c]/95 border border-indigo-400/30 rounded-xl shadow-xl md:hidden z-[120] backdrop-blur-lg"
+                className="absolute top-12 right-0 w-52 bg-gradient-to-b from-indigo-900 via-purple-900 to-pink-900 border border-indigo-400/30 rounded-xl shadow-xl md:hidden z-[120] backdrop-blur-lg"
               >
-                <ul className="flex flex-col gap-3 text-gray-300 py-4 text-center">
-                  <li>
-                    <a href="#home" onClick={() => setNavOpen(false)} className="hover:text-indigo-400">
-                      Home
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#about" onClick={() => setNavOpen(false)} className="hover:text-indigo-400">
-                      About
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#projects" onClick={() => setNavOpen(false)} className="hover:text-indigo-400">
-                      Projects
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#reviews" onClick={() => setNavOpen(false)} className="hover:text-indigo-400">
-                      Reviews
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#contact" onClick={() => setNavOpen(false)} className="hover:text-indigo-400">
-                      Contact
-                    </a>
-                  </li>
+                <ul className="flex flex-col gap-3 py-4 text-center">
+                  {["Home", "About", "Projects", "Reviews", "Contact"].map((item) => (
+                    <li key={item}>
+                      <a
+                        href={`#${item.toLowerCase()}`}
+                        onClick={() => setNavOpen(false)}
+                        className="text-white font-semibold text-lg hover:text-cyan-400 transition font-mono"
+                      >
+                        {item}
+                      </a>
+                    </li>
+                  ))}
                 </ul>
               </motion.div>
             )}
@@ -90,14 +74,11 @@ const Header = () => {
           </div>
         </div>
 
-        {/* 🔥 Right Actions (Desktop only) */}
-        <div className="hidden md:flex gap-4 justify-end items-center">
-          <a
-            href="#contact"
-            className="text-sm px-4 py-2 border border-purple-500 text-purple-300 rounded-md hover:bg-purple-600 hover:text-white transition"
-          >
-            Contact
-          </a>
+        {/* Desktop centered text (optional, can hide) */}
+        <div className="hidden md:block absolute left-1/2 -translate-x-1/2 z-[105]">
+          <span className="text-xl font-bold text-white tracking-wide font-sans">
+            Yadav <span className="text-indigo-400">Portfolio</span>
+          </span>
         </div>
       </div>
 
