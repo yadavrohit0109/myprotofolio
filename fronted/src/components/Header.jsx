@@ -9,10 +9,16 @@ const Header = () => {
 
   return (
     <header className="fixed top-0 left-0 w-full z-[100] bg-gradient-to-b from-black/80 to-transparent backdrop-blur-md shadow-md">
-      <div className="relative max-w-screen-2xl mx-auto px-4 md:px-6 py-3 flex items-center justify-between md:grid md:grid-cols-[1fr,3fr,1fr]">
+      <div className="relative max-w-screen-2xl mx-auto px-4 md:px-6 py-3 flex items-center justify-between">
         
-        {/* 🔥 Logo */}
-        <a href="/" className="flex items-center space-x-2 z-[105]">
+        {/* 🔥 Left side (empty placeholder for centering layout) */}
+        <div className="w-10 md:hidden"></div>
+
+        {/* 🔥 Center Logo (mobile & tablet: centered, desktop: left) */}
+        <a
+          href="/"
+          className="flex items-center space-x-2 justify-center absolute left-1/2 -translate-x-1/2 md:static md:translate-x-0 z-[105]"
+        >
           <img
             src={logo}
             width={40}
@@ -25,9 +31,9 @@ const Header = () => {
           </span>
         </a>
 
-        {/* 🔥 Center Nav */}
-        <div className="relative md:justify-self-center z-[110]">
-          {/* Hamburger button (mobile only) */}
+        {/* 🔥 Right side (Menu + Navbar) */}
+        <div className="relative z-[110] flex items-center">
+          {/* Hamburger button (mobile/tablet only) */}
           <button
             className="md:hidden text-white text-3xl focus:outline-none"
             onClick={() => setNavOpen(!navOpen)}
@@ -45,7 +51,7 @@ const Header = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.3 }}
-                className="absolute top-12 right-0 w-48 bg-[#0b0f1c] border border-indigo-400/30 rounded-xl shadow-xl md:hidden z-[120]"
+                className="absolute top-12 right-0 w-48 bg-[#0b0f1c]/95 border border-indigo-400/30 rounded-xl shadow-xl md:hidden z-[120] backdrop-blur-lg"
               >
                 <ul className="flex flex-col gap-3 text-gray-300 py-4 text-center">
                   <li>
@@ -84,7 +90,7 @@ const Header = () => {
           </div>
         </div>
 
-        {/* 🔥 Right Actions */}
+        {/* 🔥 Right Actions (Desktop only) */}
         <div className="hidden md:flex gap-4 justify-end items-center">
           <a
             href="#contact"
