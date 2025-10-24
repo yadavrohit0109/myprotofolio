@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import phoenix from "../assets/phoenix.png";
-
 const aboutItems = [
   { label: "Projects Completed", number: 25 },
   { label: "Years of Experience", number: 3 },
@@ -107,7 +105,7 @@ const About = () => {
 
         {/* Optional Logo */}
         <img
-          src="./assets/phoenix.png"
+          src={phoenix.png}
           alt="Logo"
           width={60}
           height={60}
