@@ -1,12 +1,8 @@
-// 
+import React, { useState } from "react";
+import Navbar from "./Navbar";
 
-import React, { useState } from 'react';
-
-// components
-import Navbar from './Navbar';
-
-// ⚠️ Update this import path if needed
-import logo from '../assets/phoenix.png';
+// ✅ Use image path directly from public/assets
+const logo = "/assets/phoenix.png";
 
 const Header = () => {
   const [navOpen, setNavOpen] = useState(false);
@@ -16,8 +12,14 @@ const Header = () => {
       <div className="max-w-screen-2xl mx-auto px-4 md:px-6 py-3 flex items-center justify-between md:grid md:grid-cols-[1fr,3fr,1fr]">
         
         {/* Logo */}
-        <a href="/pic1.jpeg" className="flex items-center space-x-2">
-          <img src={logo} width={40} height={40} alt="Yadav AI" className="rounded-full" />
+        <a href="/" className="flex items-center space-x-2">
+          <img
+            src={logo}
+            width={40}
+            height={40}
+            alt="Yadav AI"
+            className="rounded-full"
+          />
           <span className="text-xl font-bold text-white tracking-wider hidden sm:inline-block">
             Yadav <span className="text-indigo-400">AI</span>
           </span>
@@ -30,7 +32,7 @@ const Header = () => {
             onClick={() => setNavOpen(!navOpen)}
           >
             <span className="material-symbols-rounded">
-              {navOpen ? 'close' : 'menu'}
+              {navOpen ? "close" : "menu"}
             </span>
           </button>
 
@@ -39,13 +41,6 @@ const Header = () => {
 
         {/* Right side - Actions */}
         <div className="hidden md:flex gap-4 justify-end items-center">
-         {/* <a href="/login" className="text-sm px-4 py-2 border border-indigo-400 text-white rounded-md hover:bg-indigo-600">
-  Login
-</a>
-<a href="/signup" className="text-sm px-4 py-2 bg-indigo-500 text-white rounded-md hover:bg-indigo-600">
-  Sign Up
-</a> */}
-
           <a
             href="#contact"
             className="text-sm px-4 py-2 border border-purple-500 text-purple-300 rounded-md hover:bg-purple-600 hover:text-white transition"
@@ -55,10 +50,18 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Optional: Add animation under nav bar */}
+      {/* Animated underline */}
       <div className="absolute inset-x-0 bottom-0 h-[2px] bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 animate-pulse" />
     </header>
   );
 };
 
 export default Header;
+
+
+ {/* <a href="/login" className="text-sm px-4 py-2 border border-indigo-400 text-white rounded-md hover:bg-indigo-600">
+  Login
+</a>
+<a href="/signup" className="text-sm px-4 py-2 bg-indigo-500 text-white rounded-md hover:bg-indigo-600">
+  Sign Up
+</a> */}

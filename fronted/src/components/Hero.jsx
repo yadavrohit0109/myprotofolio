@@ -1,12 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { ButtonPrimary, ButtonOutline } from "./Button";
 
-// 🖼️ Local images
-import pic1 from "../assets/pic1.jpeg";
-import pic2 from "../assets/pic2.png";
-import pic3 from "../assets/pic3.png";
-
-const slides = [pic1, pic2, pic3];
+// ✅ Use absolute paths (public/assets/ is automatically served)
+const slides = ["/assets/pic1.jpeg", "/assets/pic2.png", "/assets/pic3.png"];
 
 const Hero = () => {
   const [current, setCurrent] = useState(0);
@@ -35,7 +31,7 @@ const Hero = () => {
         <div className="flex items-center gap-3 mb-6">
           <figure className="w-10 h-10 rounded-lg overflow-hidden border border-blue-400 shadow-md">
             <img
-              src={pic1}
+              src="/assets/pic1.jpeg"
               alt="Rohit Kumar"
               className="object-cover w-full h-full"
             />
