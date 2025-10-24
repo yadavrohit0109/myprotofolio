@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import Navbar from "./Navbar";
+import { motion, AnimatePresence } from "framer-motion";
+
 
 // ✅ Correct logo path for Vite
 const logo = "/assets/phoenix.png";
@@ -37,17 +39,26 @@ const Header = () => {
           </button>
 
           {/* ✅ Mobile Dropdown Menu */}
-          {navOpen && (
-            <div className="absolute top-14 left-0 w-56 bg-[#0b0f1c] border border-indigo-400/30 rounded-xl shadow-lg md:hidden">
-              <ul className="flex flex-col gap-3 text-gray-300 py-4 text-center">
-                <li><a href="#home" className="hover:text-indigo-400">Home</a></li>
-                <li><a href="#about" className="hover:text-indigo-400">About</a></li>
-                <li><a href="#projects" className="hover:text-indigo-400">Projects</a></li>
-                <li><a href="#reviews" className="hover:text-indigo-400">Reviews</a></li>
-                <li><a href="#contact" className="hover:text-indigo-400">Contact</a></li>
-              </ul>
-            </div>
-          )}
+         <AnimatePresence>
+  {navOpen && (
+    <motion.div
+      initial={{ opacity: 0, y: -10 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -10 }}
+      transition={{ duration: 0.3 }}
+      className="absolute top-14 left-0 w-56 bg-[#0b0f1c] border border-indigo-400/30 rounded-xl shadow-lg md:hidden"
+    >
+      <ul className="flex flex-col gap-3 text-gray-300 py-4 text-center">
+        <li><a href="#home" className="hover:text-indigo-400">Home</a></li>
+        <li><a href="#about" className="hover:text-indigo-400">About</a></li>
+        <li><a href="#projects" className="hover:text-indigo-400">Projects</a></li>
+        <li><a href="#reviews" className="hover:text-indigo-400">Reviews</a></li>
+        <li><a href="#contact" className="hover:text-indigo-400">Contact</a></li>
+      </ul>
+    </motion.div>
+  )}
+</AnimatePresence>
+
 
           {/* Desktop Nav */}
           <div className="hidden md:block">
