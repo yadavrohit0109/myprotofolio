@@ -2,19 +2,17 @@ import React, { useState } from "react";
 import Navbar from "./Navbar";
 import { motion, AnimatePresence } from "framer-motion";
 
-
-// ✅ Correct logo path for Vite
 const logo = "/assets/phoenix.png";
 
 const Header = () => {
   const [navOpen, setNavOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 bg-gradient-to-b from-black/80 to-transparent backdrop-blur-md shadow-md">
-      <div className="max-w-screen-2xl mx-auto px-4 md:px-6 py-3 flex items-center justify-between md:grid md:grid-cols-[1fr,3fr,1fr]">
+    <header className="fixed top-0 left-0 w-full z-[100] bg-gradient-to-b from-black/80 to-transparent backdrop-blur-md shadow-md">
+      <div className="relative max-w-screen-2xl mx-auto px-4 md:px-6 py-3 flex items-center justify-between md:grid md:grid-cols-[1fr,3fr,1fr]">
         
         {/* 🔥 Logo */}
-        <a href="/" className="flex items-center space-x-2">
+        <a href="/" className="flex items-center space-x-2 z-[105]">
           <img
             src={logo}
             width={40}
@@ -27,8 +25,9 @@ const Header = () => {
           </span>
         </a>
 
-        {/* 🔥 Center Nav (hamburger for mobile) */}
-        <div className="relative md:justify-self-center">
+        {/* 🔥 Center Nav */}
+        <div className="relative md:justify-self-center z-[110]">
+          {/* Hamburger button (mobile only) */}
           <button
             className="md:hidden text-white text-3xl focus:outline-none"
             onClick={() => setNavOpen(!navOpen)}
@@ -39,26 +38,45 @@ const Header = () => {
           </button>
 
           {/* ✅ Mobile Dropdown Menu */}
-         <AnimatePresence>
-  {navOpen && (
-    <motion.div
-      initial={{ opacity: 0, y: -10 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -10 }}
-      transition={{ duration: 0.3 }}
-      className="absolute top-14 left-0 w-56 bg-[#0b0f1c] border border-indigo-400/30 rounded-xl shadow-lg md:hidden"
-    >
-      <ul className="flex flex-col gap-3 text-gray-300 py-4 text-center">
-        <li><a href="#home" className="hover:text-indigo-400">Home</a></li>
-        <li><a href="#about" className="hover:text-indigo-400">About</a></li>
-        <li><a href="#projects" className="hover:text-indigo-400">Projects</a></li>
-        <li><a href="#reviews" className="hover:text-indigo-400">Reviews</a></li>
-        <li><a href="#contact" className="hover:text-indigo-400">Contact</a></li>
-      </ul>
-    </motion.div>
-  )}
-</AnimatePresence>
-
+          <AnimatePresence>
+            {navOpen && (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.3 }}
+                className="absolute top-12 right-0 w-48 bg-[#0b0f1c] border border-indigo-400/30 rounded-xl shadow-xl md:hidden z-[120]"
+              >
+                <ul className="flex flex-col gap-3 text-gray-300 py-4 text-center">
+                  <li>
+                    <a href="#home" onClick={() => setNavOpen(false)} className="hover:text-indigo-400">
+                      Home
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#about" onClick={() => setNavOpen(false)} className="hover:text-indigo-400">
+                      About
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#projects" onClick={() => setNavOpen(false)} className="hover:text-indigo-400">
+                      Projects
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#reviews" onClick={() => setNavOpen(false)} className="hover:text-indigo-400">
+                      Reviews
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#contact" onClick={() => setNavOpen(false)} className="hover:text-indigo-400">
+                      Contact
+                    </a>
+                  </li>
+                </ul>
+              </motion.div>
+            )}
+          </AnimatePresence>
 
           {/* Desktop Nav */}
           <div className="hidden md:block">
