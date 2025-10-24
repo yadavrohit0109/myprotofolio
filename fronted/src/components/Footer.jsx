@@ -108,7 +108,7 @@ const Footer = () => {
         {/* Logo */}
         <div className="flex items-center gap-3">
           <img
-            src="/assets/phoenix-6XYcziWl.png"
+            src="/assets/phoenix.png"
             width={40}
             height={40}
             alt="Rohit Yadav Logo"

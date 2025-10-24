@@ -106,7 +106,7 @@ const About = () => {
 
         {/* Optional Logo */}
         <img
-          src="/assets/phoenix-6XYcziWl.png"
+          src="/assets/phoenix.png"
           alt="Logo"
           width={60}
           height={60}
