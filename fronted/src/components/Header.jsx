@@ -11,35 +11,56 @@ const Header = () => {
     <header className="fixed top-0 left-0 w-full z-[100] bg-gradient-to-b from-black/95 to-black/70 backdrop-blur-md shadow-lg border-b border-indigo-500/20">
       <div className="relative max-w-screen-2xl mx-auto px-4 md:px-6 py-3 flex items-center justify-between">
 
-        {/* 🔹 Animated Logo (Always Left) */}
-        <motion.a
-          href="/"
-          className="flex items-center space-x-2 z-[105]"
-          animate={{ rotate: [0, 5, -5, 0] }}
-          transition={{ duration: 2.5, repeat: Infinity, repeatDelay: 6 }}
-        >
-          <img
-            src={logo}
-            width={50}
-            height={50}
-            alt="Yadav Portfolio Logo"
-            className="rounded-full shadow-lg"
-          />
-        </motion.a>
+        {/* 🔹 Animated Logo + Title (Left on Desktop) */}
+        <div className="flex items-center space-x-3 z-[105]">
+          {/* Logo Animation */}
+          <motion.a
+            href="/"
+            animate={{ rotate: [0, 5, -5, 0] }}
+            transition={{ duration: 2.5, repeat: Infinity, repeatDelay: 6 }}
+          >
+            <img
+              src={logo}
+              width={50}
+              height={50}
+              alt="Yadav Portfolio Logo"
+              className="rounded-full shadow-lg"
+            />
+          </motion.a>
 
-        {/* 🔹 Center Title (All Screens) */}
+          {/* Title - shown next to logo on desktop */}
+          <div className="hidden md:block">
+            <motion.span
+              className="text-2xl font-extrabold tracking-wide bg-gradient-to-r 
+                         from-pink-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent 
+                         font-sans drop-shadow-lg"
+              animate={{
+                backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+              }}
+              transition={{
+                duration: 4,
+                repeat: Infinity,
+                ease: "linear",
+              }}
+            >
+              Yadav <span className="text-indigo-400">Portfolio</span>
+            </motion.span>
+          </div>
+        </div>
+
+        {/* 🔹 Center Title (Mobile/Tablet only) */}
         <motion.div
-          className="absolute left-1/2 -translate-x-1/2 z-[105] text-center"
+          className="absolute left-1/2 -translate-x-1/2 md:hidden z-[105] text-center"
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
           <motion.span
-            className="text-2xl md:text-3xl font-extrabold tracking-wide bg-gradient-to-r 
+            className="text-xl font-extrabold tracking-wide bg-gradient-to-r 
                        from-pink-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent 
                        font-sans drop-shadow-lg"
             animate={{
-              backgroundPosition: ["0% 30%", "100% 30%", "0% 30%"],
+              backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
             }}
             transition={{
               duration: 4,
