@@ -39,7 +39,7 @@ const Header = () => {
                        from-pink-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent 
                        font-sans drop-shadow-lg"
             animate={{
-              backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+              backgroundPosition: ["0% 30%", "100% 30%", "0% 30%"],
             }}
             transition={{
               duration: 4,
