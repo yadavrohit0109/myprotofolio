@@ -8,33 +8,50 @@ const Header = () => {
   const [navOpen, setNavOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 w-full z-[100] bg-gradient-to-b from-black/90 to-black/70 backdrop-blur-md shadow-lg border-b border-indigo-500/20">
+    <header className="fixed top-0 left-0 w-full z-[100] bg-gradient-to-b from-black/95 to-black/70 backdrop-blur-md shadow-lg border-b border-indigo-500/20">
       <div className="relative max-w-screen-2xl mx-auto px-4 md:px-6 py-3 flex items-center justify-between">
 
-        {/* 🔹 Logo (Always Left) */}
+        {/* 🔹 Animated Logo (Always Left) */}
         <motion.a
           href="/"
           className="flex items-center space-x-2 z-[105]"
-          animate={{ rotate: [0, 10, -10, 0] }}
-          transition={{ duration: 2, repeat: Infinity, repeatDelay: 6 }}
+          animate={{ rotate: [0, 5, -5, 0] }}
+          transition={{ duration: 2.5, repeat: Infinity, repeatDelay: 6 }}
         >
           <img
             src={logo}
-            width={45}
-            height={45}
+            width={50}
+            height={50}
             alt="Yadav Portfolio Logo"
-            className="rounded-full"
+            className="rounded-full shadow-lg"
           />
         </motion.a>
 
-        {/* 🔹 Center text (Mobile/Tablet only) */}
-        <div className="absolute left-1/2 -translate-x-1/2 md:hidden z-[105] text-center">
-          <span className="text-xl font-bold text-white tracking-wide font-sans drop-shadow-md">
+        {/* 🔹 Center Title (All Screens) */}
+        <motion.div
+          className="absolute left-1/2 -translate-x-1/2 z-[105] text-center"
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <motion.span
+            className="text-2xl md:text-3xl font-extrabold tracking-wide bg-gradient-to-r 
+                       from-pink-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent 
+                       font-sans drop-shadow-lg"
+            animate={{
+              backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+            }}
+            transition={{
+              duration: 4,
+              repeat: Infinity,
+              ease: "linear",
+            }}
+          >
             Yadav <span className="text-indigo-400">Portfolio</span>
-          </span>
-        </div>
+          </motion.span>
+        </motion.div>
 
-        {/* 🔹 Right side */}
+        {/* 🔹 Right Side (Hamburger + Desktop Actions) */}
         <div className="relative z-[110] flex items-center gap-3">
           {/* ☰ Hamburger (Mobile/Tablet only) */}
           <button
@@ -46,18 +63,18 @@ const Header = () => {
             </span>
           </button>
 
-          {/* 💻 Desktop Navbar */}
+          {/* 💻 Desktop Navbar + Contact */}
           <div className="hidden md:flex items-center gap-8">
             <Navbar />
 
-            {/* 🟣 Contact button (Desktop only) */}
+            {/* ✉️ Contact button */}
             <motion.a
               href="#contact"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
               className="px-6 py-2 bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600 
-                         text-white font-semibold rounded-full shadow-md hover:shadow-purple-400/40 
-                         transition-all duration-300 border border-purple-500/30"
+                         text-white font-semibold rounded-full shadow-md hover:shadow-purple-400/50 
+                         transition-all duration-300 border border-purple-500/40"
             >
               Contact
             </motion.a>
@@ -89,7 +106,6 @@ const Header = () => {
                       className="group relative inline-block text-white font-semibold text-lg tracking-wide font-mono transition-all"
                     >
                       {item}
-                      {/* Animated underline */}
                       <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-gradient-to-r from-indigo-400 to-pink-400 transition-all group-hover:w-full"></span>
                     </a>
                   </motion.li>
@@ -100,7 +116,7 @@ const Header = () => {
         </AnimatePresence>
       </div>
 
-      {/* 🌈 Animated Bottom Border */}
+      {/* 🌈 Animated Gradient Line Bottom */}
       <motion.div
         className="absolute inset-x-0 bottom-0 h-[2px] bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400"
         animate={{ opacity: [0.5, 1, 0.5] }}
