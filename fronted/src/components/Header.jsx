@@ -17,7 +17,7 @@ const Header = () => {
             src={logo}
             width={45}
             height={45}
-            alt="Yadav AI"
+            alt="Yadav Portfolio Logo"
             className="rounded-full cursor-pointer"
             animate={{ rotate: [0, 10, -10, 0] }}
             transition={{ duration: 2, repeat: Infinity, repeatDelay: 4 }}
@@ -34,9 +34,21 @@ const Header = () => {
           </span>
         </div>
 
-        {/* 🔹 Right side buttons */}
-        <div className="relative z-[110] flex items-center">
-          {/* Hamburger Button */}
+        {/* 🔹 Right side - Contact & Menu */}
+        <div className="relative z-[110] flex items-center gap-3">
+          {/* 🟣 Contact Button (Visible on all screens) */}
+          <motion.a
+            href="#contact"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+            className="text-sm md:text-base px-5 py-2 bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600 
+                       text-white font-semibold rounded-full shadow-md hover:shadow-purple-400/40 
+                       transition-all duration-300 border border-purple-500/30"
+          >
+            Contact
+          </motion.a>
+
+          {/* ☰ Hamburger Button (Mobile/Tablet only) */}
           <button
             className="md:hidden text-white text-3xl focus:outline-none"
             onClick={() => setNavOpen(!navOpen)}
@@ -54,43 +66,55 @@ const Header = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.3 }}
-                className="absolute top-12 right-0 w-56 bg-gradient-to-b from-indigo-950 via-purple-900 to-pink-900 border border-indigo-400/30 rounded-2xl shadow-2xl md:hidden z-[120] backdrop-blur-lg"
+                className="absolute top-14 right-0 w-56 bg-gradient-to-b from-indigo-950 via-purple-900 to-pink-900 
+                           border border-indigo-400/30 rounded-2xl shadow-2xl md:hidden z-[120] backdrop-blur-lg overflow-hidden"
               >
                 <ul className="flex flex-col gap-3 py-5 text-center">
-                  {["Home", "About", "Projects", "Reviews", "Contact"].map(
-                    (item, index) => (
-                      <motion.li
-                        key={item}
-                        initial={{ opacity: 0, x: 20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: index * 0.1 }}
+                  {["Home", "About", "Projects", "Reviews"].map((item, index) => (
+                    <motion.li
+                      key={item}
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.1 }}
+                    >
+                      <a
+                        href={`#${item.toLowerCase()}`}
+                        onClick={() => setNavOpen(false)}
+                        className="group relative inline-block text-white font-semibold text-lg tracking-wide font-mono transition-all"
                       >
-                        <a
-                          href={`#${item.toLowerCase()}`}
-                          onClick={() => setNavOpen(false)}
-                          className="text-white font-semibold text-lg hover:text-cyan-400 transition-all font-mono hover:scale-105 inline-block"
-                        >
-                          {item}
-                        </a>
-                      </motion.li>
-                    )
-                  )}
+                        {item}
+                        {/* 🔥 Animated underline */}
+                        <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-gradient-to-r from-indigo-400 to-pink-400 transition-all group-hover:w-full"></span>
+                      </a>
+                    </motion.li>
+                  ))}
                 </ul>
               </motion.div>
             )}
           </AnimatePresence>
 
-          {/* Desktop Nav */}
-          <div className="hidden md:block">
-            <Navbar navOpen={navOpen} />
+          {/* 💻 Desktop Navbar */}
+          <div className="hidden md:flex gap-8 ml-10">
+            {["Home", "About", "Projects", "Reviews"].map((item, index) => (
+              <motion.a
+                key={item}
+                href={`#${item.toLowerCase()}`}
+                whileHover={{ scale: 1.1 }}
+                className="relative text-white text-lg font-medium tracking-wide hover:text-indigo-400 transition-all group"
+              >
+                {item}
+                {/* 🔥 Animated gradient underline */}
+                <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-gradient-to-r from-indigo-400 to-pink-400 transition-all group-hover:w-full"></span>
+              </motion.a>
+            ))}
           </div>
         </div>
       </div>
 
-      {/* 🔹 Bottom Animated Underline */}
+      {/* 🌈 Animated Bottom Border */}
       <motion.div
         className="absolute inset-x-0 bottom-0 h-[2px] bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400"
-        animate={{ opacity: [0.6, 1, 0.6] }}
+        animate={{ opacity: [0.5, 1, 0.5] }}
         transition={{ duration: 2, repeat: Infinity }}
       />
     </header>
