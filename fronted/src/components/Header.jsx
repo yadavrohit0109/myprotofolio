@@ -8,30 +8,35 @@ const Header = () => {
   const [navOpen, setNavOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 w-full z-[100] bg-gradient-to-b from-black/90 to-black/70 backdrop-blur-md shadow-md">
+    <header className="fixed top-0 left-0 w-full z-[100] bg-gradient-to-b from-black/90 to-black/70 backdrop-blur-md shadow-lg border-b border-indigo-500/20">
       <div className="relative max-w-screen-2xl mx-auto px-4 md:px-6 py-3 flex items-center justify-between">
         
-        {/* Logo - always left */}
-        <a href="/" className="flex items-center space-x-2 z-[105]">
-          <img
+        {/* 🔥 Logo + Title (Desktop only) */}
+        <div className="hidden md:flex items-center space-x-3 z-[105]">
+          <motion.img
             src={logo}
-            width={40}
-            height={40}
+            width={45}
+            height={45}
             alt="Yadav AI"
-            className="rounded-full"
+            className="rounded-full cursor-pointer"
+            animate={{ rotate: [0, 10, -10, 0] }}
+            transition={{ duration: 2, repeat: Infinity, repeatDelay: 4 }}
           />
-        </a>
-
-        {/* Center text only on mobile/tablet */}
-        <div className="absolute left-1/2 -translate-x-1/2 md:hidden z-[105] text-center">
-          <span className="text-xl font-bold text-white tracking-wide font-sans">
+          <span className="text-2xl font-bold text-white tracking-wide font-sans">
             Yadav <span className="text-indigo-400">Portfolio</span>
           </span>
         </div>
 
-        {/* Right side - hamburger / desktop menu */}
+        {/* 🔹 Center text (Mobile/Tablet only) */}
+        <div className="absolute left-1/2 -translate-x-1/2 md:hidden z-[105] text-center">
+          <span className="text-xl font-bold text-white tracking-wide font-sans drop-shadow-md">
+            Yadav <span className="text-indigo-400">Portfolio</span>
+          </span>
+        </div>
+
+        {/* 🔹 Right side buttons */}
         <div className="relative z-[110] flex items-center">
-          {/* Hamburger button - only on mobile/tablet */}
+          {/* Hamburger Button */}
           <button
             className="md:hidden text-white text-3xl focus:outline-none"
             onClick={() => setNavOpen(!navOpen)}
@@ -41,7 +46,7 @@ const Header = () => {
             </span>
           </button>
 
-          {/* Mobile Dropdown Menu */}
+          {/* ✅ Mobile Dropdown Menu */}
           <AnimatePresence>
             {navOpen && (
               <motion.div
@@ -49,20 +54,27 @@ const Header = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.3 }}
-                className="absolute top-12 right-0 w-52 bg-gradient-to-b from-indigo-900 via-purple-900 to-pink-900 border border-indigo-400/30 rounded-xl shadow-xl md:hidden z-[120] backdrop-blur-lg"
+                className="absolute top-12 right-0 w-56 bg-gradient-to-b from-indigo-950 via-purple-900 to-pink-900 border border-indigo-400/30 rounded-2xl shadow-2xl md:hidden z-[120] backdrop-blur-lg"
               >
-                <ul className="flex flex-col gap-3 py-4 text-center">
-                  {["Home", "About", "Projects", "Reviews", "Contact"].map((item) => (
-                    <li key={item}>
-                      <a
-                        href={`#${item.toLowerCase()}`}
-                        onClick={() => setNavOpen(false)}
-                        className="text-white font-semibold text-lg hover:text-cyan-400 transition font-mono"
+                <ul className="flex flex-col gap-3 py-5 text-center">
+                  {["Home", "About", "Projects", "Reviews", "Contact"].map(
+                    (item, index) => (
+                      <motion.li
+                        key={item}
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: index * 0.1 }}
                       >
-                        {item}
-                      </a>
-                    </li>
-                  ))}
+                        <a
+                          href={`#${item.toLowerCase()}`}
+                          onClick={() => setNavOpen(false)}
+                          className="text-white font-semibold text-lg hover:text-cyan-400 transition-all font-mono hover:scale-105 inline-block"
+                        >
+                          {item}
+                        </a>
+                      </motion.li>
+                    )
+                  )}
                 </ul>
               </motion.div>
             )}
@@ -73,17 +85,14 @@ const Header = () => {
             <Navbar navOpen={navOpen} />
           </div>
         </div>
-
-        {/* Desktop centered text (optional, can hide) */}
-        <div className="hidden md:block absolute left-1/2 -translate-x-1/2 z-[105]">
-          <span className="text-xl font-bold text-white tracking-wide font-sans">
-            Yadav <span className="text-indigo-400">Portfolio</span>
-          </span>
-        </div>
       </div>
 
-      {/* Animated underline */}
-      <div className="absolute inset-x-0 bottom-0 h-[2px] bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 animate-pulse" />
+      {/* 🔹 Bottom Animated Underline */}
+      <motion.div
+        className="absolute inset-x-0 bottom-0 h-[2px] bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400"
+        animate={{ opacity: [0.6, 1, 0.6] }}
+        transition={{ duration: 2, repeat: Infinity }}
+      />
     </header>
   );
 };
