@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://rohitkumaryadav.online/sitemap.xml
