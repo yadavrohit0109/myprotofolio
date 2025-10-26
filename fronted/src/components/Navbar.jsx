@@ -39,7 +39,7 @@ const Navbar = ({ navOpen }) => {
     { label: "About", link: "#about" },
     { label: "Work", link: "#work" },
     { label: "Reviews", link: "#reviews" },
-    { label: "Study Material", link: "/study-material", isDropdown: true },
+    { label: "StudyMaterial", link: "/study-material", isDropdown: true },
     { label: "Contact", link: "#contact", className: "md:hidden" },
   ];
 
@@ -62,14 +62,11 @@ const Navbar = ({ navOpen }) => {
                 onMouseLeave={() => setStudyOpen(false)}
               >
                 <button
-                  className="relative text-white text-sm px-4 py-2 rounded-full transition-all duration-300 font-medium 
-                             hover:text-cyan-300 hover:bg-indigo-500/10 flex items-center gap-1 focus:outline-none"
-                >
-                  <Book className="w-4 h-4" />
-                  {label}
-                  <ChevronDown className="w-4 h-4 mt-[2px]" />
-                </button>
-
+    onClick={() => setStudyOpen(!studyOpen)} // toggle on click for mobile
+    className="relative text-white px-4 py-2 rounded-full flex items-center gap-1"
+  >
+    Study Material <ChevronDown />
+  </button>
                 {studyOpen && (
                   <div className="absolute top-10 left-0 w-64 bg-gradient-to-b from-zinc-900/95 via-indigo-900/80 to-purple-900/70 border border-indigo-400/30 backdrop-blur-md rounded-xl p-3 shadow-xl transition-all z-50">
                     <div className="flex flex-col gap-2">
