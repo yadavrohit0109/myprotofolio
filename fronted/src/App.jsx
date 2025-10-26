@@ -9,11 +9,11 @@ import {ReactLenis } from 'lenis/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from '@gsap/react';
-import Login from './pages/Login';
-import Signup from './pages/Signup';
+// import Login from './pages/Login';
+// import Signup from './pages/Signup';
 
 
-
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 
 
@@ -39,6 +39,7 @@ import Review from './components/Review';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import Payment from './components/Payment';
+import StudyMaterial from "./components/StudyMaterial";
 
 {/* <Route path="/payment" element={<Payment />} /> */}
 
@@ -46,6 +47,19 @@ import Payment from './components/Payment';
 const App = () => {
 
   useGSAP(() => {
+
+
+     return (
+    <Router>
+      <Header />
+      <main className="pt-20">
+        <Routes>
+          <Route path="/" element={<div>🏠 Home Page</div>} />
+          <Route path="/study-material/*" element={<StudyMaterial />} />
+        </Routes>
+      </main>
+    </Router>
+  );
     const elements = gsap.utils.toArray('.reveal-up')
 
     elements.forEach((elements)=> {
