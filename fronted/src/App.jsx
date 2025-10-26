@@ -1,122 +1,81 @@
-import React from 'react'
-
-
-/**
- * node modules
- */
-
-import {ReactLenis } from 'lenis/react';
-import gsap from 'gsap';
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { ReactLenis } from "lenis/react";
+import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useGSAP } from '@gsap/react';
-// import Login from './pages/Login';
-// import Signup from './pages/Signup';
+import { useGSAP } from "@gsap/react";
 
+// 🧭 Theme Context
+import { ThemeProvider } from "./components/ThemeContext";
 
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+// Components
+import Header from "./components/Header";
+import Hero from "./components/Hero";
+import About from "./components/About";
+import Skill from "./components/Skill";
+import Work from "./components/Work";
+import YouTubePage from "./components/YouTubePage";
+import AIToolsPage from "./components/AIToolsPage";
+import Review from "./components/Review";
+import Contact from "./components/Contact";
+import Footer from "./components/Footer";
+import Payment from "./components/Payment";
 
-
-
-
-
-/**
- * register gsap plugins
- */
-gsap.registerPlugin(useGSAP, ScrollTrigger); 
-
-/**
- * 
- * components
- */
-import Header from './components/Header';
-import Hero from './components/Hero';
-import About from './components/About';
-import Skill from './components/Skill'
-import Work from './components/Work';
-import YouTubePage from './components/YouTubePage';
-import AIToolsPage from './components/AIToolsPage';
-import Review from './components/Review';
-import Contact from './components/Contact';
-import Footer from './components/Footer';
-import Payment from './components/Payment';
-import StudyMaterial from "./components/StudyMaterial";
-
-{/* <Route path="/payment" element={<Payment />} /> */}
-
+gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 const App = () => {
-
   useGSAP(() => {
+    const elements = gsap.utils.toArray(".reveal-up");
 
-
-     return (
-    <Router>
-      <Header />
-      <main className="pt-20">
-        <Routes>
-          <Route path="/" element={<div>🏠 Home Page</div>} />
-          <Route path="/study-material/*" element={<StudyMaterial />} />
-        </Routes>
-      </main>
-    </Router>
-  );
-    const elements = gsap.utils.toArray('.reveal-up')
-
-    elements.forEach((elements)=> {
-      gsap.to(elements, {
-        scrollTrigger :{
-          trigger: elements,
-          start:'200 bottom',
-          end: 'bottom 80%',
-           scrub: true
+    elements.forEach((el) => {
+      gsap.to(el, {
+        scrollTrigger: {
+          trigger: el,
+          start: "200 bottom",
+          end: "bottom 80%",
+          scrub: true,
         },
-        y:0,
-        opacity:1,
-        duration:1,
-        ease:'power2.out'
-      })
-    })
+        y: 0,
+        opacity: 1,
+        duration: 1,
+        ease: "power2.out",
+      });
+    });
   });
 
-
-
-  
-
   return (
-    <ReactLenis root>
+    <ThemeProvider>
+      <BrowserRouter>
+        <ReactLenis root>
+          <Header />
 
-      <Header />
-
-      <main>
-        <Hero />
-        <About />
-        <Skill />
-        <Work />
-        <YouTubePage />
-        <AIToolsPage />
-        <Review />
-        <Contact />
-        <Payment />
-        
-       
-      </main>
-       <Footer />
-    </ReactLenis>
-
-
-  )
-   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/payment" element={<Payment />} />
-      </Routes>
-    </BrowserRouter>
+          {/* 🌗 Light/Dark Background Wrapper */}
+          <div className="min-h-screen bg-white text-black dark:bg-zinc-900 dark:text-white transition-colors duration-500">
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <main>
+                    <Hero />
+                    <About />
+                    <Skill />
+                    <Work />
+                    <YouTubePage />
+                    <AIToolsPage />
+                    <Review />
+                    <Contact />
+                    <Payment />
+                    <Footer />
+                  </main>
+                }
+              />
+              <Route path="/payment" element={<Payment />} />
+            </Routes>
+          </div>
+        </ReactLenis>
+      </BrowserRouter>
+    </ThemeProvider>
   );
-}
+};
 
-
-export default App
-
+export default App;
