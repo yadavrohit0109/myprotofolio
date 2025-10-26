@@ -1,150 +1,88 @@
+// Navbar.jsx
 import React, { useState } from "react";
-import Navbar from "./Navbar";
 import { motion, AnimatePresence } from "framer-motion";
+import { Book, FileText, ChevronDown } from "lucide-react";
 
-const logo = "/assets/phoenix.png";
-
-const Header = () => {
-  const [navOpen, setNavOpen] = useState(false);
+const Navbar = () => {
+  const [studyOpen, setStudyOpen] = useState(false);
+  const semesters = ["Semester1", "Semester2", "Semester3", "Semester4", "Semester5", "Semester6"];
 
   return (
-    <header className="fixed top-0 left-0 w-full z-[100] bg-gradient-to-b from-black/95 to-black/70 backdrop-blur-md shadow-lg border-b border-indigo-500/20">
-      <div className="relative max-w-screen-2xl mx-auto px-4 md:px-6 py-3 flex items-center justify-between">
-
-        {/* 🔹 Animated Logo + Title (Left on Desktop) */}
-        <div className="flex items-center space-x-3 z-[105]">
-          {/* Logo Animation */}
-          <motion.a
-            href="/"
-            animate={{ rotate: [0, 5, -5, 0] }}
-            transition={{ duration: 2.5, repeat: Infinity, repeatDelay: 6 }}
-          >
-            <img
-              src={logo}
-              width={50}
-              height={50}
-              alt="Yadav Portfolio Logo"
-              className="rounded-full shadow-lg"
-            />
-          </motion.a>
-
-          {/* Title - shown next to logo on desktop */}
-          <div className="hidden md:block">
-            <motion.span
-              className="text-2xl font-extrabold tracking-wide bg-gradient-to-r 
-                         from-pink-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent 
-                         font-sans drop-shadow-lg"
-              animate={{
-                backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-              }}
-              transition={{
-                duration: 4,
-                repeat: Infinity,
-                ease: "linear",
-              }}
-            >
-              Yadav <span className="text-indigo-400">Portfolio</span>
-            </motion.span>
-          </div>
-        </div>
-
-        {/* 🔹 Center Title (Mobile/Tablet only) */}
-        <motion.div
-          className="absolute left-1/2 -translate-x-1/2 md:hidden z-[105] text-center"
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+    <nav className="flex items-center gap-8 text-white font-medium">
+      {["Home", "About", "Projects", "Reviews"].map((item) => (
+        <a
+          key={item}
+          href={`#${item.toLowerCase()}`}
+          className="relative group hover:text-pink-300 transition-all"
         >
-          <motion.span
-            className="text-xl font-extrabold tracking-wide bg-gradient-to-r 
-                       from-pink-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent 
-                       font-sans drop-shadow-lg"
-            animate={{
-              backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-            }}
-            transition={{
-              duration: 4,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-          >
-            Yadav <span className="text-indigo-400">Portfolio</span>
-          </motion.span>
-        </motion.div>
+          {item}
+          <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-gradient-to-r from-pink-400 to-purple-400 transition-all group-hover:w-full"></span>
+        </a>
+      ))}
 
-        {/* 🔹 Right Side (Hamburger + Desktop Actions) */}
-        <div className="relative z-[110] flex items-center gap-3">
-          {/* ☰ Hamburger (Mobile/Tablet only) */}
-          <button
-            className="md:hidden text-white text-3xl focus:outline-none"
-            onClick={() => setNavOpen(!navOpen)}
-          >
-            <span className="material-symbols-rounded">
-              {navOpen ? "close" : "menu"}
-            </span>
-          </button>
+      {/* 🔹 Study Material Dropdown */}
+      <div
+        className="relative"
+        onMouseEnter={() => setStudyOpen(true)}
+        onMouseLeave={() => setStudyOpen(false)}
+      >
+        <button className="flex items-center gap-1 hover:text-cyan-300 transition">
+          <Book className="w-4 h-4" />
+          Study Material
+          <ChevronDown className="w-4 h-4 mt-[2px]" />
+        </button>
 
-          {/* 💻 Desktop Navbar + Contact */}
-          <div className="hidden md:flex items-center gap-8">
-            <Navbar />
-
-            {/* ✉️ Contact button */}
-            <motion.a
-              href="#contact"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-6 py-2 bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600 
-                         text-white font-semibold rounded-full shadow-md hover:shadow-purple-400/50 
-                         transition-all duration-300 border border-purple-500/40"
-            >
-              Contact
-            </motion.a>
-          </div>
-        </div>
-
-        {/* ✅ Mobile Dropdown Menu */}
         <AnimatePresence>
-          {navOpen && (
+          {studyOpen && (
             <motion.div
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.3 }}
-              className="absolute top-14 right-0 w-56 bg-gradient-to-b from-indigo-950 via-purple-900 to-pink-900 
-                         border border-indigo-400/30 rounded-2xl shadow-2xl md:hidden z-[120] backdrop-blur-lg overflow-hidden"
+              transition={{ duration: 0.2 }}
+              className="absolute top-8 left-0 w-60 bg-gradient-to-b from-indigo-900/80 via-purple-900/70 to-pink-900/80 backdrop-blur-lg rounded-xl shadow-lg p-3 border border-purple-500/30 z-50"
             >
-              <ul className="flex flex-col gap-3 py-5 text-center">
-                {["Home", "About", "Projects", "Reviews", "Contact"].map((item, index) => (
-                  <motion.li
-                    key={item}
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.1 }}
+              <div className="space-y-2">
+                {semesters.map((sem) => (
+                  <div
+                    key={sem}
+                    className="p-2 rounded-lg hover:bg-white/10 transition-all"
                   >
-                    <a
-                      href={`#${item.toLowerCase()}`}
-                      onClick={() => setNavOpen(false)}
-                      className="group relative inline-block text-white font-semibold text-lg tracking-wide font-mono transition-all"
-                    >
-                      {item}
-                      <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-gradient-to-r from-indigo-400 to-pink-400 transition-all group-hover:w-full"></span>
-                    </a>
-                  </motion.li>
+                    <div className="flex justify-between items-center">
+                      <span className="font-semibold">{sem}</span>
+                      <div className="flex gap-2">
+                        <a
+                          href={`#${sem.toLowerCase()}-notes`}
+                          className="text-xs bg-emerald-600/80 hover:bg-emerald-500 px-2 py-1 rounded-md"
+                        >
+                          Notes
+                        </a>
+                        <a
+                          href={`#${sem.toLowerCase()}-paper`}
+                          className="text-xs bg-sky-600/80 hover:bg-sky-500 px-2 py-1 rounded-md"
+                        >
+                          Paper
+                        </a>
+                      </div>
+                    </div>
+                  </div>
                 ))}
-              </ul>
+
+                <hr className="border-t border-white/10 my-2" />
+
+                <a
+                  href="#syllabus"
+                  className="flex items-center gap-2 px-3 py-2 rounded-lg bg-white/10 hover:bg-white/20 transition"
+                >
+                  <FileText className="w-4 h-4" />
+                  <span className="font-semibold">Syllabus</span>
+                </a>
+              </div>
             </motion.div>
           )}
         </AnimatePresence>
       </div>
-
-      {/* 🌈 Animated Gradient Line Bottom */}
-      <motion.div
-        className="absolute inset-x-0 bottom-0 h-[2px] bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400"
-        animate={{ opacity: [0.5, 1, 0.5] }}
-        transition={{ duration: 2, repeat: Infinity }}
-      />
-    </header>
+    </nav>
   );
 };
 
-export default Header;
+export default Navbar;
