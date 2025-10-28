@@ -20,7 +20,8 @@ import Review from "./components/Review";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import Payment from "./components/Payment";
-
+import ProjectCard from "./components/ProjectCard";
+import Papers from "./pages/StudyMaterial/Semester1/Paper/paper";
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 const App = () => {
@@ -66,6 +67,7 @@ const App = () => {
                     <Contact />
                     <Payment />
                     <Footer />
+                    {/* <ProjectCard/>  */}
                   </main>
                 }
               />

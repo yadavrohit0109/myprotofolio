@@ -57,7 +57,7 @@ const Hero = () => {
 
         {/* Buttons */}
         <div className="flex flex-wrap justify-center lg:justify-start gap-4">
-          <ButtonPrimary href="/res.png" label="Download CV" icon="Download" />
+          <ButtonPrimary href="/Rohit_Yadav_Resume.pdf" label="Download CV" icon="Download" />
           <ButtonOutline href="#about" label="Scroll Down" icon="arrow_downward" />
         </div>
       </div>

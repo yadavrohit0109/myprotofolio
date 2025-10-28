@@ -21,7 +21,7 @@ const Navbar = ({ navOpen = false }) => {
   const navItems = [
     { label: "Home", link: "/" },
     { label: "About", link: "#about" },
-    { label: "Projects", link: "#projects" },
+    { label: "Projects", link: "#ProjectCard" },
     { label: "Reviews", link: "#reviews" },
     { label: "Study Material", isDropdown: true },
   ];
