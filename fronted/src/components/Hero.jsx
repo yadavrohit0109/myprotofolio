@@ -110,10 +110,10 @@ const Hero = () => {
       <motion.div
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="w-full lg:w-1/2 h-[60vh] lg:h-[70vh] flex items-center justify-center relative p-8"
+        className="w-full lg:w-1/2 h-[90vh] lg:h-[100vh] flex items-center justify-center relative p-8"
       >
         {/* MAIN CONTAINER - 60% WIDTH / 80% HEIGHT */}
-        <div className="w-[60%] h-[80%] max-w-[1200px] max-h-[1250px] relative shadow-2xl rounded-3xl overflow-hidden border-4 border-white/20 bg-gradient-to-br from-white/10 via-transparent to-black/20 backdrop-blur-xl">
+        <div className="w-[80%] h-[100%] max-w-[1200px] max-h-[1250px] relative shadow-2xl rounded-3xl overflow-hidden border-4 border-white/20 bg-gradient-to-br from-white/10 via-transparent to-black/20 backdrop-blur-xl">
           
           {/* IMAGE - FITS PERFECTLY IN CONTAINER */}
           <AnimatePresence initial={false} mode="wait">
