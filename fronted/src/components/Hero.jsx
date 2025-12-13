@@ -106,108 +106,102 @@ const Hero = () => {
         </div>
       </motion.div>
 
-      {/* FIXED: Perfect Image Size Carousel */}
+      {/* PERFECT 60% WIDTH / 80% HEIGHT SLIDESHOW */}
       <motion.div
-        initial={{ opacity: 0, rotateY: 90 }}
-        animate={{ opacity: 1, rotateY: 0 }}
-        className="w-full lg:w-1/2 h-[500px] lg:h-[600px] flex items-center justify-center relative"
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        className="w-full lg:w-1/2 h-[60vh] lg:h-[70vh] flex items-center justify-center relative p-8"
       >
-        <div className="w-full h-full max-w-md max-h-[450px] flex items-center justify-center p-4">
+        {/* MAIN CONTAINER - 60% WIDTH / 80% HEIGHT */}
+        <div className="w-[60%] h-[80%] max-w-[400px] max-h-[450px] relative shadow-2xl rounded-3xl overflow-hidden border-4 border-white/20 bg-gradient-to-br from-white/10 via-transparent to-black/20 backdrop-blur-xl">
           
-          {/* FIXED Container - Perfect bounds */}
-          <div className="w-[280px] h-[360px] relative shadow-2xl rounded-3xl overflow-hidden border-4 border-white/20 bg-gradient-to-br from-white/10 to-transparent/50 backdrop-blur-xl">
-            
-            {/* Image - PERFECTLY SIZED */}
-            <AnimatePresence initial={false} mode="wait">
-              <motion.div
-                key={currentSlide}
-                initial={{ opacity: 0, scale: 0.9, rotateY: 30 }}
-                animate={{ opacity: 1, scale: 1, rotateY: 0 }}
-                exit={{ opacity: 0, scale: 0.9, rotateY: -30 }}
-                transition={{ duration: 0.7 }}
-                className="absolute inset-0 flex items-center justify-center p-4"
-              >
-                <img 
-                  src={slides[currentSlide]}
-                  alt={`Project ${currentSlide + 1}`}
-                  className="w-[750px] h-[720px] max-w-[750px] max-h-[720px] object-contain rounded-2xl shadow-xl border-2 border-white/40"
-                  loading="lazy"
-                  onError={(e) => { e.target.src = '/assets/pic1.jpeg'; }}
-                />
-              </motion.div>
-            </AnimatePresence>
-
-            {/* Glass overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
-
-            {/* Shine effect */}
-            <motion.div 
-              className="absolute top-0 left-0 w-32 h-32 bg-white/10 rounded-full blur-xl"
-              animate={{ x: [0, 200, 0], y: [0, 100, 0] }}
-              transition={{ duration: 4, repeat: Infinity }}
-            />
-          </div>
-
-          {/* Thumbnail Previews */}
-          <div className="absolute -bottom-16 left-1/2 -translate-x-1/2 flex gap-3">
-            {slides.map((_, i) => (
-              <motion.button
-                key={i}
-                onClick={() => goToSlide(i)}
-                className={`w-16 h-12 rounded-2xl overflow-hidden border-2 transition-all ${
-                  i === currentSlide
-                    ? "border-emerald-400 bg-emerald-400/20 shadow-lg scale-110"
-                    : "border-white/30 hover:border-white/50 hover:scale-105 bg-white/10"
-                }`}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <img 
-                  src={slides[i]} 
-                  className="w-full h-full object-cover" 
-                  alt={`Thumb ${i}`}
-                />
-              </motion.button>
-            ))}
-          </div>
-
-          {/* Controls */}
-          <div className="absolute top-1/2 left-2 -translate-y-1/2 flex flex-col gap-3 z-20">
-            <motion.button
-              onClick={prevSlide}
-              className="w-10 h-10 bg-white/20 hover:bg-white/30 backdrop-blur-xl rounded-xl border border-white/40 flex items-center justify-center text-white"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
+          {/* IMAGE - FITS PERFECTLY IN CONTAINER */}
+          <AnimatePresence initial={false} mode="wait">
+            <motion.div
+              key={currentSlide}
+              initial={{ opacity: 0, scale: 1.05, rotateY: 20 }}
+              animate={{ opacity: 1, scale: 1, rotateY: 0 }}
+              exit={{ opacity: 0, scale: 0.95, rotateY: -20 }}
+              transition={{ duration: 0.6 }}
+              className="absolute inset-0 flex items-center justify-center p-6"
             >
-              ‹
-            </motion.button>
-          </div>
-
-          <div className="absolute top-1/2 right-2 -translate-y-1/2 flex flex-col gap-3 z-20">
-            <motion.button
-              onClick={nextSlide}
-              className="w-10 h-10 bg-gradient-to-r from-emerald-400 to-cyan-400 hover:from-emerald-300 hover:to-cyan-300 text-black rounded-xl shadow-lg flex items-center justify-center font-bold"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              ›
-            </motion.button>
-          </div>
-
-          {/* Progress */}
-          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-center">
-            <div className="text-sm font-mono text-cyan-400 mb-1">
-              {currentSlide + 1} / {slides.length}
-            </div>
-            <div className="w-20 h-1 bg-white/30 rounded-full overflow-hidden mx-auto">
-              <motion.div 
-                className="h-full bg-gradient-to-r from-emerald-400 to-cyan-400 rounded-full"
-                initial={{ width: 0 }}
-                animate={{ width: '100%' }}
-                transition={{ duration: 5, repeat: Infinity }}
+              <img 
+                src={slides[currentSlide]}
+                alt={`Project ${currentSlide + 1}`}
+                className="w-full h-full max-w-full max-h-full object-contain rounded-2xl shadow-2xl border border-white/30"
+                loading="lazy"
+                onError={(e) => { e.target.src = '/assets/pic1.jpeg'; }}
               />
-            </div>
-          </div>
+            </motion.div>
+          </AnimatePresence>
+
+          {/* Glass overlay for depth */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/20 to-transparent pointer-events-none" />
+
+          {/* Shine animation */}
+          <motion.div 
+            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent rounded-3xl"
+            animate={{ x: ['-100%', '100%', '-100%'] }}
+            transition={{ duration: 3, repeat: Infinity }}
+          />
+        </div>
+
+        {/* Thumbnail Strip */}
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 bg-white/10 backdrop-blur-xl px-4 py-2 rounded-2xl border border-white/20">
+          {slides.map((_, i) => (
+            <motion.button
+              key={i}
+              onClick={() => goToSlide(i)}
+              className={`w-12 h-8 rounded-xl overflow-hidden border-2 transition-all group ${
+                i === currentSlide
+                  ? "border-emerald-400 bg-emerald-400/30 shadow-lg scale-110"
+                  : "border-white/30 hover:border-white/50 hover:scale-105 bg-white/20"
+              }`}
+              whileHover={{ scale: 1.15 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <img 
+                src={slides[i]} 
+                className="w-full h-full object-cover group-hover:brightness-110" 
+                alt={`Thumb ${i}`}
+              />
+            </motion.button>
+          ))}
+        </div>
+
+        {/* Navigation Arrows */}
+        <motion.button
+          onClick={prevSlide}
+          className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/20 hover:bg-white/30 backdrop-blur-xl rounded-2xl border-2 border-white/40 flex items-center justify-center text-white text-xl font-bold shadow-lg"
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          ‹
+        </motion.button>
+
+        <motion.button
+          onClick={nextSlide}
+          className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-gradient-to-r from-emerald-400 to-cyan-400 hover:from-emerald-300 hover:to-cyan-300 text-black rounded-2xl shadow-xl border-2 border-white/20 flex items-center justify-center font-bold"
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          ›
+        </motion.button>
+
+        {/* Progress Indicator */}
+        <div className="absolute top-6 right-6 bg-black/70 backdrop-blur-xl px-3 py-1 rounded-full text-xs font-mono text-cyan-400 border border-cyan-400/50">
+          {currentSlide + 1}/{slides.length}
+        </div>
+
+        {/* Progress Bar */}
+        <div className="absolute bottom-28 left-1/2 -translate-x-1/2 w-24 h-1.5 bg-white/30 rounded-full overflow-hidden">
+          <motion.div 
+            className="h-full bg-gradient-to-r from-emerald-400 to-cyan-400 rounded-full"
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 5, repeat: Infinity }}
+            style={{ originX: 0 }}
+          />
         </div>
       </motion.div>
     </section>
