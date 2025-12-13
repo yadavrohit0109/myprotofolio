@@ -130,7 +130,7 @@ const Hero = () => {
                 <img 
                   src={slides[currentSlide]}
                   alt={`Project ${currentSlide + 1}`}
-                  className="w-[250px] h-[320px] max-w-[250px] max-h-[320px] object-contain rounded-2xl shadow-xl border-2 border-white/40"
+                  className="w-[750px] h-[720px] max-w-[750px] max-h-[720px] object-contain rounded-2xl shadow-xl border-2 border-white/40"
                   loading="lazy"
                   onError={(e) => { e.target.src = '/assets/pic1.jpeg'; }}
                 />
