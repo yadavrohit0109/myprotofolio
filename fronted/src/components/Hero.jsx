@@ -1,94 +1,136 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { ButtonPrimary, ButtonOutline } from "./Button";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
-// ✅ Use absolute paths (public/assets/ is automatically served)
-const slides = ["/assets/pic1.jpeg", "/assets/pic2.png", "/assets/pic3.png"];
+// 🔁 Slides (public/assets)
+const slides = [
+  "/assets/pic1.jpeg",
+  "/assets/pic2.png",
+  "/assets/pic3.png",
+];
 
 const Hero = () => {
   const [current, setCurrent] = useState(0);
+  const intervalRef = useRef(null);
 
-  // Auto slide every 5 seconds
+  // ▶ Auto-play
   useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % slides.length);
-    }, 5000);
-    return () => clearInterval(timer);
+    startAutoPlay();
+    return () => stopAutoPlay();
   }, []);
+
+  const startAutoPlay = () => {
+    stopAutoPlay();
+    intervalRef.current = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % slides.length);
+    }, 4500);
+  };
+
+  const stopAutoPlay = () => {
+    if (intervalRef.current) clearInterval(intervalRef.current);
+  };
+
+  const next = () => setCurrent((prev) => (prev + 1) % slides.length);
+  const prev = () => setCurrent((prev) => (prev - 1 + slides.length) % slides.length);
 
   return (
     <section
       id="home"
-      className="relative w-full min-h-screen flex flex-col lg:flex-row items-center justify-between overflow-hidden text-gray-100"
+      className="relative min-h-screen flex flex-col lg:flex-row items-center overflow-hidden bg-[#020617] text-white"
     >
-      {/* 🌈 Background Gradient Animation */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#020617] via-[#0a1028] to-[#04091c] opacity-95"></div>
-      <div className="absolute top-1/3 left-1/4 w-[300px] h-[300px] bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
-      <div className="absolute bottom-1/4 right-1/3 w-[400px] h-[400px] bg-purple-700/10 rounded-full blur-3xl animate-pulse"></div>
+      {/* 🌌 Animated Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-indigo-950 via-slate-900 to-black" />
+      <div className="absolute -top-32 -left-32 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-3xl animate-pulse" />
+      <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-purple-600/10 rounded-full blur-3xl animate-pulse" />
 
-      {/* 🧑‍💻 Left Content - 30% */}
-      <div className="relative z-10 w-full lg:w-[30%] px-8 py-16 text-center lg:text-left flex flex-col items-center lg:items-start">
+      {/* 👨‍💻 LEFT CONTENT */}
+      <motion.div
+        initial={{ opacity: 0, x: -60 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8 }}
+        className="relative z-10 w-full lg:w-[35%] px-8 py-16"
+      >
         {/* Status */}
         <div className="flex items-center gap-3 mb-6">
-          <figure className="w-10 h-10 rounded-lg overflow-hidden border border-blue-400 shadow-md">
-            <img
-              src="/assets/pic1.jpeg"
-              alt="Rohit Kumar"
-              className="object-cover w-full h-full"
-            />
-          </figure>
-          <div className="flex items-center gap-1.5 text-gray-300 text-sm tracking-wide">
-            <span className="relative w-2 h-2 rounded-full bg-emerald-400">
-              <span className="absolute inset-0 rounded-full bg-emerald-400 animate-ping"></span>
-            </span>
-            Available for work
-          </div>
+          <img
+            src="/assets/pic1.jpeg"
+            alt="Profile"
+            className="w-11 h-11 rounded-xl object-cover border border-cyan-400"
+          />
+          <span className="flex items-center gap-2 text-sm text-emerald-400">
+            <span className="w-2 h-2 bg-emerald-400 rounded-full animate-ping" />
+            Available for Work
+          </span>
         </div>
 
-        {/* Headline */}
-        <h1 className="text-4xl lg:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 leading-tight mb-6">
-          Crafting the Future of the Web 🚀
+        <h1 className="text-4xl lg:text-6xl font-extrabold leading-tight bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+          Building Digital
+          <br />
+          Experiences ⚡
         </h1>
 
-        {/* Paragraph */}
-        <p className="text-gray-300 text-lg leading-relaxed mb-10">
-          I’m a passionate developer dedicated to building futuristic, responsive,
-          and performance-optimized websites — blending AI, design, and code.
+        <p className="mt-6 text-gray-300 text-lg leading-relaxed max-w-xl">
+          I design and develop futuristic, high‑performance web applications using modern
+          technologies, animations, and AI‑driven thinking.
         </p>
 
-        {/* Buttons */}
-        <div className="flex flex-wrap justify-center lg:justify-start gap-4">
-          <ButtonPrimary href="/Rohit_Yadav_Resume.pdf" label="Download CV" icon="Download" />
-          <ButtonOutline href="#about" label="Scroll Down" icon="arrow_downward" />
+        <div className="mt-10 flex flex-wrap gap-4">
+          <ButtonPrimary
+            href="/Rohit_Yadav_Resume.pdf"
+            label="Download Resume"
+            icon="Download"
+          />
+          <ButtonOutline href="#projects" label="View Projects" icon="arrow_downward" />
         </div>
-      </div>
+      </motion.div>
 
-      {/* 🖼️ Right Slideshow - 70% */}
-      <div className="relative w-full lg:w-[70%] h-[60vh] lg:h-[80vh] flex justify-center items-center overflow-hidden">
-        <figure className="relative w-[90%] h-[90%] rounded-2xl overflow-hidden border border-blue-500/20 shadow-2xl bg-[#050b16]/60 backdrop-blur-md">
-          {slides.map((slide, index) => (
-            <img
-              key={index}
-              src={slide}
-              alt={`Slide ${index + 1}`}
-              className={`absolute inset-0 w-full h-full object-contain transition-opacity duration-[1200ms] ease-in-out ${
-                index === current ? "opacity-100" : "opacity-0"
-              }`}
+      {/* 🖼️ RIGHT SLIDER */}
+      <div
+        onMouseEnter={stopAutoPlay}
+        onMouseLeave={startAutoPlay}
+        className="relative w-full lg:w-[65%] h-[60vh] lg:h-[85vh] flex items-center justify-center"
+      >
+        <div className="relative w-[90%] h-[90%] rounded-3xl overflow-hidden border border-white/10 shadow-2xl backdrop-blur-xl bg-white/5">
+          <AnimatePresence mode="wait">
+            <motion.img
+              key={current}
+              src={slides[current]}
+              initial={{ opacity: 0, scale: 1.05 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.8 }}
+              className="absolute inset-0 w-full h-full object-contain"
             />
-          ))}
-        </figure>
+          </AnimatePresence>
+        </div>
 
-        {/* Dots Navigation */}
-        <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex gap-3">
+        {/* ⬅ ➡ Controls */}
+        <button
+          onClick={prev}
+          className="absolute left-6 p-3 rounded-full bg-black/40 hover:bg-black/70 transition"
+        >
+          <ChevronLeft />
+        </button>
+        <button
+          onClick={next}
+          className="absolute right-6 p-3 rounded-full bg-black/40 hover:bg-black/70 transition"
+        >
+          <ChevronRight />
+        </button>
+
+        {/* ● Dots */}
+        <div className="absolute bottom-6 flex gap-3">
           {slides.map((_, i) => (
             <button
               key={i}
               onClick={() => setCurrent(i)}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${
+              className={`w-3 h-3 rounded-full transition-all ${
                 i === current
-                  ? "bg-cyan-400 scale-110 shadow-[0_0_10px_rgba(100,200,255,0.6)]"
+                  ? "bg-cyan-400 scale-125 shadow-lg"
                   : "bg-gray-500 hover:bg-gray-400"
               }`}
-            ></button>
+            />
           ))}
         </div>
       </div>
