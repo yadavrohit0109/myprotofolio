@@ -113,7 +113,7 @@ const Hero = () => {
         className="w-full lg:w-1/2 h-[60vh] lg:h-[70vh] flex items-center justify-center relative p-8"
       >
         {/* MAIN CONTAINER - 60% WIDTH / 80% HEIGHT */}
-        <div className="w-[60%] h-[80%] max-w-[400px] max-h-[450px] relative shadow-2xl rounded-3xl overflow-hidden border-4 border-white/20 bg-gradient-to-br from-white/10 via-transparent to-black/20 backdrop-blur-xl">
+        <div className="w-[60%] h-[80%] max-w-[800px] max-h-[850px] relative shadow-2xl rounded-3xl overflow-hidden border-4 border-white/20 bg-gradient-to-br from-white/10 via-transparent to-black/20 backdrop-blur-xl">
           
           {/* IMAGE - FITS PERFECTLY IN CONTAINER */}
           <AnimatePresence initial={false} mode="wait">
