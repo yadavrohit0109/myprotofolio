@@ -75,7 +75,7 @@ const Hero = () => {
         </h1>
 
         <p className="text-xl text-gray-300 mb-10 leading-relaxed max-w-lg mx-auto lg:mx-0">
-          I’m a passionate developer dedicated to building futuristic, responsive, and performance-optimized websites — blending AI, design, and code.
+          I’m a passionate developer dedicated to building  resp, and perf-optimized websites — AI, design, and code.
         </p>
 
         <div className="flex flex-wrap gap-3 mb-10 justify-center lg:justify-start">
