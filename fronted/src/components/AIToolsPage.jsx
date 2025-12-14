@@ -208,8 +208,4 @@ const AIToolsPage = () => {
 
 export default AIToolsPage;
 
-/* Tailwind helper (optional)
-.input {
-  @apply bg-black/50 border border-gray-700 rounded-xl p-2 text-white focus:outline-none focus:ring-2 focus:ring-purple-400;
-}
-*/
+
