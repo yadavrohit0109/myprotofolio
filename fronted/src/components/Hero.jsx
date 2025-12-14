@@ -62,7 +62,7 @@ const Hero = () => {
             <div className="text-xl font-bold bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
               Live Now
             </div>
-            <div className="text-emerald-400 text-sm font-mono">AI Engineer • Available</div>
+            <div className="text-emerald-400 text-sm font-mono">AI and java Developer Engineer • Available</div>
           </div>
         </div>
 
@@ -75,7 +75,7 @@ const Hero = () => {
         </h1>
 
         <p className="text-xl text-gray-300 mb-10 leading-relaxed max-w-lg mx-auto lg:mx-0">
-          Crafting intelligent web experiences with React, AI, and immersive animations.
+          I’m a passionate developer dedicated to building futuristic, responsive, and performance-optimized websites — blending AI, design, and code.
         </p>
 
         <div className="flex flex-wrap gap-3 mb-10 justify-center lg:justify-start">
