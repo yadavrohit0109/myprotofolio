@@ -90,7 +90,7 @@ const Navbar = ({ navOpen = false, isAuthenticated = false, user }) => {
 
               {/* SIGNUP */}
               <a
-                href="/Login.html"
+                href="/Signup.html"
                 className="flex items-center gap-2 px-6 py-2 rounded-xl 
                            bg-gradient-to-r from-indigo-600 to-purple-600 
                            text-white font-semibold hover:scale-105 transition"

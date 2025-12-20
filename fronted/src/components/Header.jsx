@@ -159,7 +159,7 @@ const Header = () => {
 
           {/* SIGNUP */}
           <a
-            href="/Login.html#signup"
+            href="/Signup.html#signup"
             className="hidden md:flex items-center gap-2 px-5 py-2 rounded-xl font-semibold text-white bg-gradient-to-r from-indigo-600 to-purple-600 hover:scale-105 transition"
           >
             <UserPlus size={16} /> Sign Up
@@ -194,7 +194,7 @@ const Header = () => {
             <a href="/Login.html" className="block py-2">
               Login
             </a>
-            <a href="/Login.html#signup" className="block py-2 font-bold">
+            <a href="/Signup.html#signup" className="block py-2 font-bold">
               Sign Up
             </a>
           </motion.div>
