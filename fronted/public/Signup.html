@@ -1,0 +1,123 @@
+        <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Signup | Yadav Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(135deg, #0f172a, #312e81);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: Arial, sans-serif;
+    }
+    .card {
+      width: 380px;
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(15px);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 25px 45px rgba(0,0,0,0.4);
+      color: white;
+      animation: slideUp 0.8s ease;
+    }
+    h2 { text-align: center; margin-bottom: 20px; }
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0;
+      border-radius: 10px;
+      border: none;
+      outline: none;
+    }
+    .strength {
+      height: 6px;
+      border-radius: 10px;
+      background: #444;
+      margin-bottom: 10px;
+      overflow: hidden;
+    }
+    .strength div {
+      height: 100%;
+      width: 0%;
+      transition: 0.3s;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      border-radius: 12px;
+      border: none;
+      font-weight: bold;
+      background: linear-gradient(to right, #34d399, #22d3ee);
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    .toggle {
+      font-size: 12px;
+      cursor: pointer;
+      color: #a5f3fc;
+    }
+    .link {
+      text-align: center;
+      margin-top: 15px;
+    }
+    .link a {
+      color: #67e8f9;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <h2>Create Account 🚀</h2>
+
+  <input type="text" placeholder="Full Name" />
+  <input type="email" placeholder="Email" />
+
+  <input type="password" id="password" placeholder="Password" oninput="checkStrength()" />
+  <div class="strength">
+    <div id="strengthBar"></div>
+  </div>
+  <span class="toggle" onclick="togglePassword()">Show / Hide Password</span>
+
+  <button>Sign Up</button>
+
+  <div class="link">
+    Already have an account?
+    <a href="Login.html">Login</a>
+  </div>
+</div>
+
+<script>
+  function checkStrength() {
+    const pass = document.getElementById("password").value;
+    const bar = document.getElementById("strengthBar");
+    let strength = 0;
+    if (pass.length > 5) strength++;
+    if (/[A-Z]/.test(pass)) strength++;
+    if (/[0-9]/.test(pass)) strength++;
+    if (/[^A-Za-z0-9]/.test(pass)) strength++;
+
+    const colors = ["red", "orange", "yellow", "lime"];
+    bar.style.width = (strength * 25) + "%";
+    bar.style.background = colors[strength - 1] || "transparent";
+  }
+
+  function togglePassword() {
+    const input = document.getElementById("password");
+    input.type = input.type === "password" ? "text" : "password";
+  }
+</script>
+
+</body>
+</html>
+<!DOCTYPE html>
