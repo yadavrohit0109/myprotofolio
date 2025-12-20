@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { CheckCircle, XCircle, PlusCircle } from "lucide-react";
 
+
 const AIToolsPage = () => {
   const [tools, setTools] = useState([
     {
@@ -18,11 +19,13 @@ const AIToolsPage = () => {
     },
   ]);
 
+
   const [newTool, setNewTool] = useState({
     name: "",
     description: "",
     link: "",
   });
+
 
   const handleAddTool = () => {
     if (!newTool.name || !newTool.link) return alert("Please fill all fields!");
@@ -30,16 +33,19 @@ const AIToolsPage = () => {
     setNewTool({ name: "", description: "", link: "" });
   };
 
+
   const approveTool = (index) => {
     const updated = [...tools];
     updated[index].approved = true;
     setTools(updated);
   };
 
+
   const removeTool = (index) => {
     const updated = tools.filter((_, i) => i !== index);
     setTools(updated);
   };
+
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-[#0a0f1a] via-[#0d1525] to-[#080c16] text-white relative overflow-hidden">
@@ -55,6 +61,7 @@ const AIToolsPage = () => {
         transition={{ repeat: Infinity, duration: 22 }}
       />
 
+
       {/* Header */}
       <motion.h1
         initial={{ opacity: 0, y: -20 }}
@@ -64,6 +71,7 @@ const AIToolsPage = () => {
       >
         Daily AI Tools Hub
       </motion.h1>
+
 
       {/* Add Tool Form */}
       <div className="z-10 w-11/12 md:w-4/5 lg:w-3/5 bg-black/40 border border-gray-700 rounded-2xl p-6 backdrop-blur-sm shadow-lg mb-10">
@@ -101,6 +109,7 @@ const AIToolsPage = () => {
         </button>
       </div>
 
+
       {/* Tool List */}
       <div className="z-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6 w-11/12 md:w-4/5 pb-16">
         {tools.map((tool, index) => (
@@ -124,6 +133,7 @@ const AIToolsPage = () => {
               Visit Tool →
             </a>
 
+
             <div className="flex gap-3 mt-4">
               {!tool.approved && (
                 <button
@@ -146,5 +156,4 @@ const AIToolsPage = () => {
     </div>
   );
 };
-
 export default AIToolsPage;
