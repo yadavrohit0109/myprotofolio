@@ -158,12 +158,12 @@ const Header = () => {
           </a>
 
           {/* SIGNUP */}
-          <a
+          {/* <a
             href="/Signup.html#signup"
             className="hidden md:flex items-center gap-2 px-5 py-2 rounded-xl font-semibold text-white bg-gradient-to-r from-indigo-600 to-purple-600 hover:scale-105 transition"
           >
             <UserPlus size={16} /> Sign Up
-          </a>
+          </a> */}
 
           {/* DARK MODE */}
           <button
