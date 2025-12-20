@@ -1,50 +1,67 @@
-        <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Signup | Yadav Portfolio</title>
+  <title>Signup</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <style>
+    * { box-sizing: border-box; font-family: Arial, sans-serif; }
+
     body {
       margin: 0;
       height: 100vh;
-      background: linear-gradient(135deg, #0f172a, #312e81);
+      background: transparent;
+    }
+
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.55);
+      backdrop-filter: blur(12px);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: Arial, sans-serif;
+      z-index: 999;
+      animation: fadeIn 0.4s ease;
     }
+
     .card {
-      width: 380px;
-      background: rgba(255,255,255,0.12);
-      backdrop-filter: blur(15px);
-      padding: 30px;
+      width: 390px;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(20px);
       border-radius: 20px;
-      box-shadow: 0 25px 45px rgba(0,0,0,0.4);
+      padding: 30px;
       color: white;
-      animation: slideUp 0.8s ease;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.45);
+      animation: slideUp 0.5s ease;
     }
+
     h2 { text-align: center; margin-bottom: 20px; }
+
     input {
       width: 100%;
       padding: 12px;
-      margin: 8px 0;
+      margin-bottom: 10px;
       border-radius: 10px;
       border: none;
       outline: none;
     }
+
     .strength {
       height: 6px;
-      border-radius: 10px;
       background: #444;
-      margin-bottom: 10px;
+      border-radius: 10px;
       overflow: hidden;
+      margin-bottom: 8px;
     }
+
     .strength div {
       height: 100%;
       width: 0%;
       transition: 0.3s;
     }
+
     button {
       width: 100%;
       padding: 12px;
@@ -53,54 +70,85 @@
       font-weight: bold;
       background: linear-gradient(to right, #34d399, #22d3ee);
       cursor: pointer;
-      margin-top: 10px;
     }
+
     .toggle {
       font-size: 12px;
       cursor: pointer;
       color: #a5f3fc;
+      margin-bottom: 10px;
+      display: inline-block;
     }
+
     .link {
       text-align: center;
       margin-top: 15px;
     }
+
     .link a {
       color: #67e8f9;
-      text-decoration: none;
       font-weight: bold;
+      text-decoration: none;
     }
+
+    .close {
+      position: absolute;
+      top: 20px;
+      right: 25px;
+      font-size: 28px;
+      color: white;
+      cursor: pointer;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
     @keyframes slideUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
+      from { transform: translateY(30px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
     }
   </style>
 </head>
+
 <body>
 
-<div class="card">
-  <h2>Create Account 🚀</h2>
+<div class="overlay">
+  <span class="close" onclick="window.history.back()">×</span>
 
-  <input type="text" placeholder="Full Name" />
-  <input type="email" placeholder="Email" />
+  <div class="card">
+    <h2>Create Account 🚀</h2>
 
-  <input type="password" id="password" placeholder="Password" oninput="checkStrength()" />
-  <div class="strength">
-    <div id="strengthBar"></div>
-  </div>
-  <span class="toggle" onclick="togglePassword()">Show / Hide Password</span>
+    <input type="text" placeholder="Full Name" />
+    <input type="email" placeholder="Email" />
 
-  <button>Sign Up</button>
+    <input
+      type="password"
+      id="password"
+      placeholder="Password"
+      oninput="checkStrength()"
+    />
 
-  <div class="link">
-    Already have an account?
-    <a href="Login.html">Login</a>
+    <div class="strength">
+      <div id="bar"></div>
+    </div>
+
+    <span class="toggle" onclick="toggle()">Show / Hide Password</span>
+
+    <button>Sign Up</button>
+
+    <div class="link">
+      Already have an account?
+      <a href="Login.html">Login</a>
+    </div>
   </div>
 </div>
 
 <script>
   function checkStrength() {
     const pass = document.getElementById("password").value;
-    const bar = document.getElementById("strengthBar");
+    const bar = document.getElementById("bar");
     let strength = 0;
     if (pass.length > 5) strength++;
     if (/[A-Z]/.test(pass)) strength++;
@@ -108,11 +156,11 @@
     if (/[^A-Za-z0-9]/.test(pass)) strength++;
 
     const colors = ["red", "orange", "yellow", "lime"];
-    bar.style.width = (strength * 25) + "%";
+    bar.style.width = strength * 25 + "%";
     bar.style.background = colors[strength - 1] || "transparent";
   }
 
-  function togglePassword() {
+  function toggle() {
     const input = document.getElementById("password");
     input.type = input.type === "password" ? "text" : "password";
   }
@@ -120,4 +168,3 @@
 
 </body>
 </html>
-<!DOCTYPE html>
