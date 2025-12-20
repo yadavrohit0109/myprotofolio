@@ -79,7 +79,7 @@ const Navbar = ({ navOpen = false, isAuthenticated = false, user }) => {
             <>
               {/* LOGIN */}
               <a
-                href="/Login.html"
+                href="components/backend/Login.html"
                 className="flex items-center gap-2 px-5 py-2 rounded-xl 
                            border border-indigo-400 text-white 
                            hover:bg-indigo-500/20 transition"
