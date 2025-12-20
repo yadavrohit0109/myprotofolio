@@ -1,10 +1,10 @@
 import React, { useRef, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, FileText, Book } from "lucide-react";
+import { ChevronDown, FileText, Book, User, LogIn, LogOut } from "lucide-react";
 import { Link } from "react-router-dom";
 
-const Navbar = ({ navOpen = false }) => {
+const Navbar = ({ navOpen = false, isAuthenticated = false, user }) => {
   const lastActiveLink = useRef(null);
   const activeBox = useRef(null);
   const [studyOpen, setStudyOpen] = useState(false);
@@ -144,6 +144,83 @@ const Navbar = ({ navOpen = false }) => {
           );
         })}
 
+        {/* Auth Section */}
+        <div className="flex items-center gap-2 ml-auto md:ml-0">
+          <AnimatePresence mode="wait">
+            {isAuthenticated ? (
+              <>
+                {/* User Profile Dropdown */}
+                <div className="relative">
+                  <button className="flex items-center gap-2 text-white px-3 py-2 rounded-full bg-gradient-to-r from-indigo-500/20 to-purple-500/20 hover:from-indigo-400/30 hover:to-purple-400/30 transition-all duration-300">
+                    <User className="w-5 h-5" />
+                    <span className="hidden md:inline text-sm font-medium">
+                      {user?.name || "User"}
+                    </span>
+                    <ChevronDown className="w-4 h-4" />
+                  </button>
+                  
+                  {/* User Dropdown */}
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.95, y: -10 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.95, y: -10 }}
+                    className="absolute top-12 right-0 w-56 bg-zinc-900/95 border border-zinc-700/50 backdrop-blur-md rounded-2xl p-2 shadow-2xl z-50"
+                    style={{ originY: 0 }}
+                  >
+                    <div className="p-3 border-b border-zinc-700/50">
+                      <p className="text-sm font-medium text-white">
+                        {user?.email || "user@example.com"}
+                      </p>
+                    </div>
+                    <Link
+                      to="/profile"
+                      className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-zinc-800/50 transition-all text-white text-sm"
+                    >
+                      <User className="w-5 h-5" />
+                      Profile
+                    </Link>
+                    <Link
+                      to="/dashboard"
+                      className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-zinc-800/50 transition-all text-white text-sm"
+                    >
+                      <FileText className="w-5 h-5" />
+                      Dashboard
+                    </Link>
+                    <button
+                      onClick={() => {
+                        // Handle logout
+                        localStorage.removeItem('token');
+                        window.location.href = '/';
+                      }}
+                      className="w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-red-500/20 transition-all text-red-300 text-sm font-medium"
+                    >
+                      <LogOut className="w-5 h-5" />
+                      Logout
+                    </button>
+                  </motion.div>
+                </div>
+              </>
+            ) : (
+              /* Auth Buttons */
+              <>
+                <Link
+                  to="/login"
+                  className="hidden md:flex items-center gap-2 text-white/80 px-4 py-2 rounded-full border border-zinc-600/50 hover:border-indigo-400/50 hover:text-indigo-300 transition-all duration-300 backdrop-blur-sm"
+                >
+                  <LogIn className="w-4 h-4" />
+                  Login
+                </Link>
+                <Link
+                  to="/signup"
+                  className="flex items-center gap-2 bg-gradient-to-r from-indigo-500 via-purple-500 to-cyan-500 text-white px-6 py-2.5 rounded-full font-semibold text-sm shadow-lg hover:shadow-xl hover:from-indigo-600 hover:via-purple-600 hover:to-cyan-600 transform hover:scale-[1.02] transition-all duration-300"
+                >
+                  Get Started
+                </Link>
+              </>
+            )}
+          </AnimatePresence>
+        </div>
+
         <span
           ref={activeBox}
           className="absolute bg-indigo-500/20 rounded-full z-[-1] transition-all duration-300"
@@ -155,6 +232,13 @@ const Navbar = ({ navOpen = false }) => {
 
 Navbar.propTypes = {
   navOpen: PropTypes.bool,
+  isAuthenticated: PropTypes.bool,
+  user: PropTypes.object,
+};
+
+Navbar.defaultProps = {
+  isAuthenticated: false,
+  user: null,
 };
 
 export default Navbar;
